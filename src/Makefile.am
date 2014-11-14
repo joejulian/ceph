@@ -32,6 +32,7 @@ include cls/Makefile.am
 include key_value_store/Makefile.am
 include test/Makefile.am
 include tools/Makefile.am
+include pybind/Makefile.am
 
 
 # core daemons
@@ -302,37 +303,12 @@ dist-hook:
 
 CLEANFILES += ceph_ver.h sample.fetch_config
 
-
-# assemble Python script with global version variables
-# NB: depends on format of ceph_ver.h
-
-ceph: ceph.in ./ceph_ver.h Makefile
-	rm -f $@ $@.tmp
-	echo "#!/usr/bin/env python" >$@.tmp
-	grep "#define CEPH_GIT_NICE_VER" ./ceph_ver.h | \
-		sed -e 's/#define \(.*VER\) /\1=/' >>$@.tmp
-	grep "#define CEPH_GIT_VER" ./ceph_ver.h | \
-	  sed -e 's/#define \(.*VER\) /\1=/' -e 's/=\(.*\)$$/="\1"/' >>$@.tmp
-	cat $(srcdir)/$@.in >>$@.tmp
-	chmod a+x $@.tmp
-	chmod a-w $@.tmp
-	mv $@.tmp $@
-
 # cleaning
 
 clean-local:
 	rm -f *.so 
 	find . -name '*.gcno' -o -name '*.gcda' -o -name '*.lcov' | xargs rm -f
 	rm -f ceph java/java/com/ceph/crush/Bucket.class
-
-
-# pybind
-
-python_PYTHON = pybind/rados.py \
-		pybind/rbd.py \
-		pybind/cephfs.py \
-		pybind/ceph_argparse.py \
-		pybind/ceph_rest_api.py
 
 
 # everything else we want to include in a 'make dist'

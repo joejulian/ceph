@@ -87,7 +87,7 @@ AM_CXXFLAGS="${AM_CXXFLAGS}"
 # Check for yasm
 if yasm -f elf64 src/common/crc32c_intel_fast_asm.S -o /dev/null; then
    echo 'we have a modern and working yasm'
-   if test `arch` = "x86_64"; then
+   if test `uname -m` = "x86_64"; then
       echo 'we are x86_64'
       AC_DEFINE([HAVE_GOOD_YASM_ELF64], [1], [we have a recent yasm and are x86_64])
       with_good_yasm=yes
