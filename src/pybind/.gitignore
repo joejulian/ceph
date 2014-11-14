@@ -1,0 +1,4 @@
+build/
+dist/
+python_ceph.egg-info/
+src/
