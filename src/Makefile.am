@@ -225,11 +225,9 @@ bash_completion_DATA = $(srcdir)/bash_completion/ceph \
                $(srcdir)/bash_completion/radosgw-admin
 
 ceph_sbin_SCRIPTS = \
-	ceph-disk \
 	ceph-disk-prepare \
 	ceph-disk-activate \
-	ceph-disk-udev \
-	ceph-create-keys
+	ceph-disk-udev
 
 bin_SCRIPTS += \
 	ceph-run \
