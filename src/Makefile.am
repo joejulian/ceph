@@ -232,9 +232,7 @@ ceph_sbin_SCRIPTS = \
 	ceph-create-keys
 
 bin_SCRIPTS += \
-	ceph \
 	ceph-run \
-	ceph-rest-api \
 	ceph-clsinfo \
 	ceph-debugpack \
 	ceph-rbdnamer \
