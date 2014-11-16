@@ -790,6 +790,7 @@ AC_CONFIG_FILES([Makefile
 	src/ocf/ceph
 	src/ocf/rbd
 	src/java/Makefile
+    src/pybind/Makefile
 	man/Makefile
 	ceph.spec])
 AC_OUTPUT
