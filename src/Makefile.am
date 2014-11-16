@@ -1,6 +1,6 @@
 include Makefile-env.am
 
-SUBDIRS += ocf java
+SUBDIRS += ocf java pybind
 DIST_SUBDIRS += gtest ocf libs3 java
 
 
@@ -32,7 +32,6 @@ include cls/Makefile.am
 include key_value_store/Makefile.am
 include test/Makefile.am
 include tools/Makefile.am
-include pybind/Makefile.am
 
 
 # core daemons
