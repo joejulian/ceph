@@ -18,15 +18,14 @@ EXTRA_DIST = setup.py src ceph ceph_argparse.py ceph-create-keys ceph-disk \
 #	mv $@.tmp $@
 
 all:
-
-all-local:
 	$(PYTHON) setup.py build
 
-install-exec-hook:
+install:
 	$(PYTHON) setup.py install --root=$(DESTDIR) --prefix=$(PY_PREFIX) $(PYTHON_SETUPUTIL_ARGS)
 
-clean: clean-local
+clean:
+	$(PYTHON) setup.py clean
+	rm -fr build
 
-clean-local:
-
-check-local: all
+test:
+	$(PYTHON) setup.py test
