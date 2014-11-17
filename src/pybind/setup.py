@@ -30,7 +30,8 @@ with open('requirements.txt') as f:
 setup(
     name = 'python-ceph',
     description = 'bindings to Ceph, the distributed file system',
-    packages=find_packages(),
+    package_dir = {'': 'src'},
+    packages=find_packages('src'),
     author = 'Inktank',
     author_email = 'ceph-devel@vger.kernel.org',
     version = call_git_describe(),
