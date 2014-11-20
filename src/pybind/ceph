@@ -842,4 +842,6 @@ def main():
     return 0
 
 if __name__ == '__main__':
-    sys.exit(main())
+    result = main()
+    del cluster_handle
+    sys.exit(result)
