@@ -1,12 +1,7 @@
-ceph_sbin_SCRIPTS = ceph-create-keys
-
 bin_SCRIPTS += \
 	ceph-run \
-	ceph-rest-api \
 	ceph-debugpack \
 	ceph-crush-location
-
-python_PYTHON += pybind/ceph_rest_api.py
 
 shell_scripts += ceph-coverage
 
@@ -35,8 +30,7 @@ endif # WITH_MON
 
 if WITH_OSD
 
-ceph_sbin_SCRIPTS += \
-	ceph-disk \
+ceph_sbin_SCRIPTS = \
 	ceph-disk-prepare \
 	ceph-disk-activate \
 	ceph-disk-udev

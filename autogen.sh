@@ -2,7 +2,7 @@
 
 set -e
 
-test -f src/ceph.in || {
+test -f autogen.sh || {
     echo "You must run this script in the top-level ceph directory"
     exit 1
 }

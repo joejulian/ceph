@@ -9,6 +9,7 @@ DIST_SUBDIRS += gmock ocf libs3 java tracing
 include arch/Makefile.am
 include auth/Makefile.am
 include brag/Makefile.am
+include pybind/Makefile.am
 include crush/Makefile.am
 include mon/Makefile.am
 include mds/Makefile.am
@@ -93,13 +94,9 @@ EXTRA_DIST += \
 	$(srcdir)/upstart/radosgw-all.conf \
 	$(srcdir)/upstart/radosgw-all-starter.conf \
 	$(srcdir)/upstart/rbdmap.conf \
-	ceph.in \
-	ceph-disk \
 	ceph-disk-prepare \
 	ceph-disk-activate \
 	ceph-disk-udev \
-	ceph-create-keys \
-	ceph-rest-api \
 	ceph-crush-location \
 	mount.fuse.ceph \
 	rbd-replay-many \
@@ -203,7 +200,6 @@ dist-hook:
 
 CLEANFILES += ceph_ver.h sample.fetch_config
 
-
 # cleaning
 
 clean-local:
@@ -211,10 +207,6 @@ clean-local:
 	find . -name '*.gcno' -o -name '*.gcda' -o -name '*.lcov' -o -name "*.o" -o -name "*.lo" | xargs rm -f
 	rm -f ceph java/java/com/ceph/crush/Bucket.class
 
-
-# pybind
-
-python_PYTHON = 
 
 # everything else we want to include in a 'make dist'
 
