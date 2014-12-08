@@ -2,10 +2,7 @@ bash_completiondir = $(sysconfdir)/bash_completion.d
 bash_completion_DATA = $(srcdir)/bash_completion/ceph
 
 bin_SCRIPTS += \
-	ceph \
 	ceph-post-file
-
-python_PYTHON += pybind/ceph_argparse.py
 
 ceph_syn_SOURCES = ceph_syn.cc
 ceph_syn_SOURCES += client/SyntheticClient.cc # uses g_conf.. needs cleanup
@@ -15,26 +12,12 @@ bin_PROGRAMS += ceph-syn
 # assemble Python script with global version variables
 # NB: depends on format of ceph_ver.h
 
-ceph: ceph.in ./ceph_ver.h Makefile
-	rm -f $@ $@.tmp
-	echo "#!/usr/bin/env python" >$@.tmp
-	grep "#define CEPH_GIT_NICE_VER" ./ceph_ver.h | \
-		sed -e 's/#define \(.*VER\) /\1=/' >>$@.tmp
-	grep "#define CEPH_GIT_VER" ./ceph_ver.h | \
-	  sed -e 's/#define \(.*VER\) /\1=/' -e 's/=\(.*\)$$/="\1"/' >>$@.tmp
-	cat $(srcdir)/$@.in >>$@.tmp
-	chmod a+x $@.tmp
-	chmod a-w $@.tmp
-	mv $@.tmp $@
-
 
 if WITH_RADOS
 
 bash_completion_DATA += \
 	$(srcdir)/bash_completion/rados \
 	$(srcdir)/bash_completion/radosgw-admin
-
-python_PYTHON += pybind/rados.py
 
 librados_config_SOURCES = librados-config.cc
 librados_config_LDADD = $(LIBRADOS) $(CEPH_GLOBAL)
@@ -48,8 +31,6 @@ bash_completion_DATA += \
 bin_SCRIPTS += \
 	ceph-rbdnamer \
 	rbd-replay-many
-
-python_PYTHON += pybind/rbd.py
 
 libkrbd_la_SOURCES = krbd.cc
 libkrbd_la_LIBADD = $(LIBSECRET) $(LIBCOMMON) -lblkid -ludev
@@ -82,8 +63,6 @@ if WITH_CEPHFS
 cephfs_SOURCES = cephfs.cc
 cephfs_LDADD = $(LIBCOMMON)
 bin_PROGRAMS += cephfs
-
-python_PYTHON += pybind/cephfs.py
 
 # libcephfs (this should go somewhere else in the future)
 

@@ -105,8 +105,8 @@ EXTRA_DIST += \
 	$(srcdir)/test/centos-7/ceph.spec.in \
 	$(srcdir)/test/mon/mon-test-helpers.sh \
 	$(srcdir)/test/osd/osd-test-helpers.sh \
-        $(srcdir)/test/coverage.sh \
-	$(patsubst %,$(srcdir)/%,$(check_SCRIPTS))
+        $(srcdir)/test/coverage.sh
+#	$(patsubst %,$(srcdir)/%,$(check_SCRIPTS))
 
 docker-check:
 	$(srcdir)/test/container-make-check-ubuntu-14.04.sh
