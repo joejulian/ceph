@@ -417,6 +417,22 @@ def get_dev_size(dev, size='megabytes'):
     finally:
         os.close(fd)
 
+def get_partition_mpath(dev, pnum):
+    part_re = "part{pnum}-mpath-".format(pnum=pnum)
+    partitions = list_partitions_mpath(dev, part_re)
+    if partitions:
+        return partitions[0]
+    else:
+        return None
+
+def get_partition_dev_by_partuuid(uuid):
+    """
+    get the device name for a partition given that partition's uuid
+    """
+    if uuid in os.listdir('/dev/disk/by-partuuid'):
+        return os.path.join('/dev/disk/by-partuuid', uuid)
+    else:
+        raise Error('partition {} does not appear to exist'.format(uuid))
 
 def get_partition_dev(dev, pnum):
     """
@@ -1415,7 +1431,10 @@ def prepare_dev(
         except subprocess.CalledProcessError as e:
             raise Error(e)
 
-        rawdev = get_partition_dev(data, 1)
+        try:
+            rawdev = get_partition_dev_by_partuuid(osd_uuid)
+        except Error:
+            rawdev = get_partition_dev(data, 1)
 
     dev = None
     if osd_dm_keypath:
