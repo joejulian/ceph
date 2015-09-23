@@ -52,6 +52,6 @@ setup(
         'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
     ],
-    py_modules = ['ceph_argparse', 'cephfs', 'rados', 'rbd'],
+    py_modules = ['ceph_argparse', 'cephfs', 'rados', 'rbd', 'ceph_rest_api'],
     scripts = ['ceph-create-keys', 'ceph-disk', 'ceph-rest-api', 'ceph'],
 )
