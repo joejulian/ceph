@@ -117,7 +117,6 @@ EXTRA_DIST += \
 	libs3/debian \
 	libs3/doxyfile \
 	libs3/inc \
-	libs3/libs3.spec \
 	libs3/mswin \
 	libs3/src \
 	libs3/test \
