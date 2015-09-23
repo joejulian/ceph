@@ -23,13 +23,13 @@ EXTRA_DIST += pybind/MANIFEST.in \
 	      pybind/src/rbd.py
 
 
-all-local:
+all-local::
 	cd $(srcdir)/pybind ; \
 	$(PYTHON) setup.py build
 
-install-data-local:
-	cd $(srcdir)/pybind ; \
-	if test "$(DESTDIR)" ; then \
+install-data-local::
+	cd $(srcdir)/pybind ; echo "HERE" ; \
+	if test "-d $(DESTDIR)" ; then \
 		if lsb_release -si | grep --quiet 'Ubuntu\|Debian\|Devuan' ; then \
 	    		options=--install-layout=deb ; \
 		else \
@@ -39,7 +39,7 @@ install-data-local:
 	fi ; \
 	$(PYTHON) setup.py install --root=$(DESTDIR) $$root $$options
 
-clean-local:
+clean-local::
 	cd $(srcdir)/pybind ; \
 	$(PYTHON) setup.py clean ; \
 	rm -fr build wheelhouse .tox .coverage
