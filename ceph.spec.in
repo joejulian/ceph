@@ -585,11 +585,11 @@ fi
 %{_bindir}/ceph-debugpack
 %{_bindir}/ceph-coverage
 %{_initrddir}/ceph
-%{_sbindir}/ceph-disk
+%{_bindir}/ceph-disk
 %{_sbindir}/ceph-disk-activate
 %{_sbindir}/ceph-disk-prepare
 %{_sbindir}/ceph-disk-udev
-%{_sbindir}/ceph-create-keys
+%{_bindir}/ceph-create-keys
 %{_sbindir}/rcceph
 %if 0%{?rhel} >= 7 || 0%{?fedora} || 0%{?suse_version}
 %{_sbindir}/mount.ceph
