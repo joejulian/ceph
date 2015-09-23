@@ -44,7 +44,7 @@ sha1_dir=$codename/$base/sha1/$sha1
 #
 ./autogen.sh
 ./configure --with-rocksdb --with-ocf \
-    --with-nss --with-debug --enable-cephfs-java \
+    --with-nss --with-debug \
     --with-lttng --with-babeltrace
 cp rpm/init-ceph.in-fedora.patch .
 #
@@ -53,10 +53,11 @@ cp rpm/init-ceph.in-fedora.patch .
 #
 make distdir=ceph-${vers%%-*} dist-bzip2
 #
-# create the packages with ccache to speed things up when building repeatedly
+# create the packages without cephfs_java as configure is not built to
+# check for fedora packaging
 #
 mkdir -p $sha1_dir
-PATH=/usr/lib/ccache:$PATH ccache rpmbuild --define "_rpmdir $sha1_dir" \
+rpmbuild --without cephfs_java --define "_rpmdir $sha1_dir" \
     --define "_srcrpmdir $sha1_dir/SRPMS" -ta ceph-${vers%%-*}.tar.bz2
 #
 # Create a repository in a directory with a name structured
